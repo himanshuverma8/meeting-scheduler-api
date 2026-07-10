@@ -31,3 +31,5 @@ export const createScheduleRequestBodySchema = z.object({
 
 export type CreateScheduleInput = z.infer<typeof createScheduleRequestBodySchema>;
 
+export type UpdateScheduleInput = z.infer<typeof createScheduleRequestBodySchema>;
+
