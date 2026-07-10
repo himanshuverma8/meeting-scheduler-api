@@ -1,9 +1,7 @@
 import express from "express";
-import authRouter from "./modules/auth/auth.routes.js"
+import authRouter from "./modules/auth/auth.routes.js";
+import schedulesRouter from "./modules/schedules/schedules.routes.js"
 import { errorHandler } from "./middleware/error.middleware.js";
-import { env } from "./config/env.js";
-
-const PORT = 3000;
 
 
 const app = express();
@@ -15,8 +13,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/auth', authRouter);
+app.use('/schedules', schedulesRouter);
 app.use(errorHandler);
 
-app.listen(env.PORT, () => {
-    console.log(`server is running on port ${env.PORT}`)
-})
+
+export default app;
