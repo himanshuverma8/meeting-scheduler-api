@@ -1,7 +1,7 @@
 import express from "express";
-import authRouter from "./modules/auth/auth.routes.js";
-import schedulesRouter from "./modules/schedules/schedules.routes.js"
-import { errorHandler } from "./middleware/error.middleware.js";
+import authRouter from "./modules/auth/auth.routes";
+import schedulesRouter from "./modules/schedules/schedules.routes"
+import { errorHandler } from "./middleware/error.middleware";
 
 
 const app = express();

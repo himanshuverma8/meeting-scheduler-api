@@ -1,10 +1,10 @@
 import jwt from "jsonwebtoken";
-import { db } from "../../db/index.js";
-import { users } from "../../db/schema.js";
-import { AppError } from "../../lib/errors.js";
-import type { LoginInput, SignupInput } from "./auth.validation.js";
+import { db } from "../../db/index";
+import { users } from "../../db/schema";
+import { AppError } from "../../lib/errors";
+import type { LoginInput, SignupInput } from "./auth.validation";
 import argon2 from "argon2";
-import { env } from "../../config/env.js";
+import { env } from "../../config/env";
 import { eq } from "drizzle-orm";
 
 export async function signup(data: SignupInput) {

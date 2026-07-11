@@ -1,6 +1,6 @@
 import type { Response, Request, NextFunction } from "express";
-import { signup, login } from "./auth.service.js";
-import { signupPostRequestBodySchema, loginPostRequestBodySchema } from "./auth.validation.js";
+import { signup, login } from "./auth.service";
+import { signupPostRequestBodySchema, loginPostRequestBodySchema } from "./auth.validation";
 
 export async function signupHandler(req: Request, res: Response, next: NextFunction) {
     try {
