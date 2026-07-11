@@ -1,8 +1,8 @@
-import { eq, and } from "drizzle-orm";
-import { db } from "../../db/index.js";
-import { schedule_entries, schedules } from "../../db/schema.js";
-import { AppError } from "../../lib/errors.js";
-import type { CreateScheduleInput, UpdateScheduleInput } from "./schedules.validation.js";
+import { eq, and, inArray } from "drizzle-orm";
+import { db } from "../../db/index";
+import { schedule_entries, schedules } from "../../db/schema";
+import { AppError } from "../../lib/errors";
+import type { CreateScheduleInput, UpdateScheduleInput } from "./schedules.validation";
 
 export async function createSchedule(
   data: CreateScheduleInput,
@@ -37,6 +37,44 @@ export async function createSchedule(
 
     return { schedule, entries: insertedEntries };
   });
+}
+
+
+export async function getSchedules(userId: string) {
+    const allSchedules = await db.select().from(schedules)
+        .where(eq(schedules.user_id, userId))
+
+    const scheduleIds = allSchedules.map((s) => s.id);    
+
+    const allEntries = await db.select().from(schedule_entries)
+        .where(inArray(schedule_entries.schedule_id, scheduleIds));
+
+    const entriesBySchedule = new Map<string, typeof allEntries>();
+    for(const entry of allEntries) {
+        const listOfSchedules = entriesBySchedule.get(entry.schedule_id) ?? [];
+        listOfSchedules.push(entry);
+        entriesBySchedule.set(entry.schedule_id, listOfSchedules);
+    }
+
+    const allSchedulesWithEntries = allSchedules.map((schedule) => ({
+        ...schedule,
+        entries: entriesBySchedule.get(schedule.id) ?? []
+    }))
+
+    return { schedules: allSchedulesWithEntries };
+}
+
+export async function getSchedulesById(scheduleId: string, userId: string){
+    const [schedule] = await db.select().from(schedules)
+        .where(and(eq(schedules.user_id, userId), eq(schedules.id, scheduleId)));
+
+    if (!schedule) {
+        throw new AppError(404, "NOT_FOUND", "schedule not found");
+    }
+    const scheduleEntry = await db.select().from(schedule_entries)
+    .where(eq(schedule_entries.schedule_id, schedule.id));
+    
+    return { ...schedule, entries: scheduleEntry };
 }
 
 
