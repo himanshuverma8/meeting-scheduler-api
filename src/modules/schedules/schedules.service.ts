@@ -74,7 +74,7 @@ export async function getSchedulesById(scheduleId: string, userId: string){
     const scheduleEntry = await db.select().from(schedule_entries)
     .where(eq(schedule_entries.schedule_id, schedule.id));
     
-    return { ...schedule, entries: scheduleEntry };
+    return { schedule: {...schedule, entries: scheduleEntry} };
 }
 
 
