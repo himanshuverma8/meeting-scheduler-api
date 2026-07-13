@@ -82,3 +82,11 @@ export async function updateEventType(
 
   return { event_types: event };
 }
+
+export async function deleteEventType(eventId: string, userId: string) {
+    const [event] = await db.delete(event_types)
+        .where(and(eq(event_types.id, eventId), eq(event_types.user_id, userId)))
+        .returning();
+
+    return { event_type: event };    
+}

@@ -1,6 +1,6 @@
 import type {Request, Response, NextFunction } from "express";
 import { createEventTypePostRequestBodySchema, updateEventTypePostRequestBodySchema } from "./event-types.validation";
-import { createEventType, getEventTypes, getEventTypesById, updateEventType } from "./event-types.service";
+import { createEventType, deleteEventType, getEventTypes, getEventTypesById, updateEventType } from "./event-types.service";
 import { AppError } from "../../lib/errors";
 
 
@@ -79,5 +79,26 @@ export async function updateEventTypeHandler(req: Request, res: Response, next: 
     } catch (err) {
         next(err);
     }   
+}
+
+export async function deleteEventTypeHandler(req: Request, res: Response, next: NextFunction) {
+    try {
+        if (!req.user) {
+          throw new AppError(401, "UNAUTHORIZED", "authentication required");
+        }  
+
+    const eventTypeId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+
+    if (!eventTypeId) {
+        return res.status(400).json({ error: "event_type id doesn't exist"})
+    }
+
+    const data = deleteEventType(eventTypeId, req.user.id);
+
+    return res.status(200).json({ success: true, data });
+    } catch (err) {
+        next(err);
+    }
+
 }
 
