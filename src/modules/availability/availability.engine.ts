@@ -1,4 +1,7 @@
-type Interval = [number, number] ;
+import { DateTime } from "luxon";
+import { localTimeToInstant } from "../../lib/time";
+
+export type Interval = [number, number] ;
 
 export function merge(intervals: Interval[]): Interval[] {
     const sorted = [...intervals].sort((a,b) => a[0]-b[0]);
@@ -47,7 +50,7 @@ export function chunk(gap: Interval, duration: number): number[] {
     return chunks;
 }
 
-type EventConfig = {
+export type EventConfig = {
     duration: number;
     bufferBefore: number;
     bufferAfter: number;
@@ -78,3 +81,20 @@ export function computeSlots(params: {
     }
     return slots;
  }
+
+ export function resolveWindowsForDate(
+  entries: { day_of_week: number | null; specific_date: string | null; start_time: string; end_time: string }[],
+  date: string,      // "2026-07-16"
+  zone: string,      // organizer's IANA zone
+): Interval[] {
+    //check for specific date
+    const overrides = entries.filter(e => e.specific_date === date);
+    const weekday = DateTime.fromISO(date).weekday % 7;
+    //recurring rows for weekday
+    const recurring = entries.filter(e => e.day_of_week === weekday);
+    const matched = overrides.length ? overrides : recurring;
+    return matched.map((e): Interval => [
+        localTimeToInstant(date, e.start_time, zone),
+        localTimeToInstant(date, e.end_time, zone)
+    ])
+}
