@@ -35,8 +35,10 @@ export async function createBooking(data: bookingInput) {
     }    
     
 
-    const [newBooking] = await db.insert(bookings)
+    try {
+        const [newBooking] = await db.insert(bookings)
         .values({
+            host_id: eventDetails.user_id,
             event_type_id: data.event_type_id,
             start_time: startTime,
             end_time: endTime,
@@ -51,4 +53,11 @@ export async function createBooking(data: bookingInput) {
         throw new AppError(500, "INTERNAL_ERROR", "failed to create booking");
     }    
     return { booking: newBooking };
+    } catch (err: any) {
+        if (err instanceof AppError) throw err;
+        if (err?.cause?.code === "23P01") {
+            throw new AppError(409, "CONFLICT", "this slot was just booked");
+        }
+        throw err;
+    }
 }
