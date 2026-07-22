@@ -12,4 +12,6 @@ A Calendly-style scheduling backend. Organizers define availability schedules an
 
 ## Data model
 
-![Database schema](./schema_v1.png)
+`bookings` carries a denormalized `host_id` and a Postgres `EXCLUDE USING gist` constraint (via `btree_gist`), so two overlapping bookings for the same host can never both commit.
+
+![Database schema](./schema_v2.png)
