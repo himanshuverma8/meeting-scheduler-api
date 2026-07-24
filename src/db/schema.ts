@@ -43,6 +43,7 @@ export const event_types = pgTable("event_types", {
 export const bookings = pgTable("bookings", {
     id: uuid("id").primaryKey().defaultRandom(),
     host_id: uuid("host_id").references(() => users.id).notNull(),
+    idempotency_key: text("idempotency_key").unique(),
     event_type_id: uuid("event_type_id").references(() => event_types.id).notNull(),
     start_time: timestamp("start_time", {
         withTimezone: true

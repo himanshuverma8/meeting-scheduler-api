@@ -15,6 +15,13 @@
       "when": 1784631590433,
       "tag": "0001_violet_darwin",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1784808131925,
+      "tag": "0002_wild_meteorite",
+      "breakpoints": true
     }
   ]
 }
