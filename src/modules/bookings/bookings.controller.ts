@@ -8,7 +8,10 @@ export async function createBookingHandler(req: Request, res: Response, next: Ne
     if (!result.success) {
         return res.status(400).json({ error: result.error.flatten() });
     }
-    const data = await createBooking(result.data);
+    const key = req.headers['idempotency-key'];
+    const idempotencyKey = Array.isArray(key) ? key[0] : key;
+
+    const data = await createBooking(result.data, idempotencyKey);
     return res.status(201).json({ success: true, data });
     } catch (err) {
         next(err);
