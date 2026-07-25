@@ -1,0 +1,18 @@
+info:
+  name: createSchedule
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/schedules"
+  body:
+    type: json
+    data: '{"name":"Work Hours","timezone":"Asia/Kolkata","entries":[{"day_of_week":1,"start_time":"12:00","end_time":"17:00"}, {"day_of_week":2,"start_time":"13:00","end_time":"17:00"}]}'
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

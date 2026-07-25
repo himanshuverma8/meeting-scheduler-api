@@ -1,0 +1,33 @@
+info:
+  name: createBooking
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/bookings"
+  headers:
+    - name: idempotency-key
+      value: ""
+  body:
+    type: json
+    data: |
+      {
+        "event_type_id": "{{eventId}}",
+        "start_time": "2026-07-23T11:54:59.857-04:00",
+        "invitee_name": "Idempotency Test",
+        "invitee_email": "idem@example.com",
+        "invitee_timezone": "America/New_York"
+      }
+  auth: inherit
+
+runtime:
+  variables:
+    - name: eventId
+      value: 81934b77-e10c-497f-9ab9-6edb5315fcc9
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

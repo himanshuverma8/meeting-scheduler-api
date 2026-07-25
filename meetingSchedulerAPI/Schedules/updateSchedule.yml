@@ -1,0 +1,22 @@
+info:
+  name: updateSchedule
+  type: http
+  seq: 2
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/schedules/:scheduleId"
+  params:
+    - name: scheduleId
+      value: ""
+      type: path
+  body:
+    type: json
+    data: ""
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

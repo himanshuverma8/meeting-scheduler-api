@@ -1,0 +1,24 @@
+info:
+  name: updateEventType
+  type: http
+  seq: 2
+
+http:
+  method: PATCH
+  url: "{{baseUrl}}/event-types/:eventTypeId"
+  params:
+    - name: eventTypeId
+      value: 54776b46-6a4f-4676-890a-cfc7cce7d2a4
+      type: path
+  body:
+    type: json
+    data: '{"duration":-100}'
+  auth:
+    type: bearer
+    token: {{token}}
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

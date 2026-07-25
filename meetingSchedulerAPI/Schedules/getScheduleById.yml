@@ -1,0 +1,19 @@
+info:
+  name: getScheduleById
+  type: http
+  seq: 5
+
+http:
+  method: GET
+  url: "{{baseUrl}}/schedules/:scheduleId"
+  params:
+    - name: scheduleId
+      value: 83d1885f-7a86-4fe9-8049-04ccbab2d2ca
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -1,0 +1,34 @@
+info:
+  name: createEventType
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{baseUrl}}/event-types"
+  body:
+    type: json
+    data: |
+      {
+        "schedule_id": "{{scheduleId}}",
+        "name": "30 Min Meeting",
+        "duration": 30,
+        "buffer_before": 0,
+        "buffer_after": 0,
+        "min_notice_minutes": 0,
+        "max_days_in_advance": 30
+      }
+  auth:
+    type: bearer
+    token: {{token}}
+
+runtime:
+  variables:
+    - name: scheduleId
+      value: 5267c9d3-4d45-4071-8d7c-bdaf7d39c344
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
