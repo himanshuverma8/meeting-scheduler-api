@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
-import { createScheduleRequestBodySchema } from "./schedules.validation";
-import { createSchedule, deleteSchedule, getSchedules, getSchedulesById, updateSchedule } from "./schedules.service";
-import { AppError } from "../../lib/errors";
+import { createScheduleRequestBodySchema } from "./schedules.validation.js";
+import { createSchedule, deleteSchedule, getSchedules, getSchedulesById, updateSchedule } from "./schedules.service.js";
+import { AppError } from "../../lib/errors.js";
 
 export async function createScheduleHandler(
   req: Request,

@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express";
 import jwt, { type JwtPayload } from "jsonwebtoken";
-import { env } from "../config/env";
-import { AppError } from "../lib/errors";
+import { env } from "../config/env.js";
+import { AppError } from "../lib/errors.js";
 
 
 export async function authenticationMiddleware(req: Request, res: Response, next: NextFunction) {

@@ -1,8 +1,8 @@
 import { eq, and, inArray } from "drizzle-orm";
-import { db } from "../../db/index";
-import { schedule_entries, schedules } from "../../db/schema";
-import { AppError } from "../../lib/errors";
-import type { CreateScheduleInput, UpdateScheduleInput } from "./schedules.validation";
+import { db } from "../../db/index.js";
+import { schedule_entries, schedules } from "../../db/schema.js";
+import { AppError } from "../../lib/errors.js";
+import type { CreateScheduleInput, UpdateScheduleInput } from "./schedules.validation.js";
 
 export async function createSchedule(
   data: CreateScheduleInput,

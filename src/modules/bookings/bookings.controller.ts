@@ -1,6 +1,6 @@
 import type { Response, Request, NextFunction } from "express";
-import { bookingPostRequestBodySchema } from "./bookings.validation";
-import { createBooking } from "./bookings.service";
+import { bookingPostRequestBodySchema } from "./bookings.validation.js";
+import { createBooking } from "./bookings.service.js";
 
 export async function createBookingHandler(req: Request, res: Response, next: NextFunction) {
     try {

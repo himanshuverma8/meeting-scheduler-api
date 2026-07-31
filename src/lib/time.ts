@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
-import { AppError } from "./errors";
+import { AppError } from "./errors.js";
 
 
 export function localTimeToInstant(date: string, time: string, zone: string): number {

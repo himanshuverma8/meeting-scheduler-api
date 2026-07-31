@@ -1,12 +1,12 @@
 import express from "express";
-import authRouter from "./modules/auth/auth.routes";
-import schedulesRouter from "./modules/schedules/schedules.routes"
-import eventTypesRouter from "./modules/event-types/event-types.routes";
-import availabilityRouter from "./modules/availability/availability.routes";
-import bookingsRouter from "./modules/bookings/bookings.routes";
-import { errorHandler } from "./middleware/error.middleware";
+import authRouter from "./modules/auth/auth.routes.js";
+import schedulesRouter from "./modules/schedules/schedules.routes.js"
+import eventTypesRouter from "./modules/event-types/event-types.routes.js";
+import availabilityRouter from "./modules/availability/availability.routes.js";
+import bookingsRouter from "./modules/bookings/bookings.routes.js";
+import { errorHandler } from "./middleware/error.middleware.js";
 import { sql } from "drizzle-orm";
-import { db } from "./db";
+import { db } from "./db/index.js";
 
 const app = express();
 

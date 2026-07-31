@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { merge, subtract, chunk, computeSlots, resolveWindowsForDate } from "./availability.engine";
-import { localTimeToInstant } from "../../lib/time";
+import { merge, subtract, chunk, computeSlots, resolveWindowsForDate } from "./availability.engine.js";
+import { localTimeToInstant } from "../../lib/time.js";
 
 describe("merge", () => {
   it("keeps non-overlapping unsorted intervals separate", () => {

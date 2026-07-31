@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "start": "tsx src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
     "test": "vitest run"
   },
   "repository": {
@@ -21,7 +22,6 @@
   },
   "homepage": "https://github.com/himanshuverma8/meeting-scheduler-api#readme",
   "dependencies": {
-    "tsx": "^4.23.1",
     "argon2": "^0.44.0",
     "dotenv": "^17.4.2",
     "drizzle-orm": "^0.45.2",
@@ -38,6 +38,7 @@
     "@types/node": "^26.1.0",
     "@types/pg": "^8.20.0",
     "drizzle-kit": "^0.31.10",
+    "tsx": "^4.23.1",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10"
   }

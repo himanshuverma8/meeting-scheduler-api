@@ -1,8 +1,8 @@
 import { eq } from "drizzle-orm";
-import { db } from "../../db";
-import { bookings, event_types } from "../../db/schema";
-import type { bookingInput } from "./bookings.validation";
-import { AppError } from "../../lib/errors";
+import { db } from "../../db/index.js";
+import { bookings, event_types } from "../../db/schema.js";
+import type { bookingInput } from "./bookings.validation.js";
+import { AppError } from "../../lib/errors.js";
 
 export async function createBooking(data: bookingInput, idempotencyKey?: string) {
     //create a booking

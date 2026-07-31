@@ -1,6 +1,6 @@
 import express from "express";
-import { createEventTypeHandler, deleteEventTypeHandler, getEventTypesByIdHandler, getEventTypesHandler, updateEventTypeHandler } from "./event-types.controller";
-import { authenticationMiddleware } from "../../middleware/auth.middleware";
+import { createEventTypeHandler, deleteEventTypeHandler, getEventTypesByIdHandler, getEventTypesHandler, updateEventTypeHandler } from "./event-types.controller.js";
+import { authenticationMiddleware } from "../../middleware/auth.middleware.js";
 
 const router = express.Router();
 

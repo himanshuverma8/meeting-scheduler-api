@@ -1,8 +1,8 @@
 import type { Request, Response, NextFunction } from "express";
-import { availabilityGetRequestQuerySchema } from "./availability.validation";
-import { getAvailableSlots } from "./availability.service";
+import { availabilityGetRequestQuerySchema } from "./availability.validation.js";
+import { getAvailableSlots } from "./availability.service.js";
 import { DateTime } from "luxon";
-import { AppError } from "../../lib/errors";
+import { AppError } from "../../lib/errors.js";
 
 export async function getAvailableSlotsHandler(
   req: Request,

@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
-import { localTimeToInstant } from "../../lib/time";
+import { localTimeToInstant } from "../../lib/time.js";
 
 export type Interval = [number, number] ;
 

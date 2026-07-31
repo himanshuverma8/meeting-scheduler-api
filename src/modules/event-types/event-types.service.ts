@@ -1,11 +1,11 @@
-import { db } from "../../db";
+import { db } from "../../db/index.js";
 import { and, eq } from "drizzle-orm";
-import { event_types, schedules } from "../../db/schema";
+import { event_types, schedules } from "../../db/schema.js";
 import type {
   CreateEventTypeInput,
   UpdateEventTypeInput,
-} from "./event-types.validation";
-import { AppError } from "../../lib/errors";
+} from "./event-types.validation.js";
+import { AppError } from "../../lib/errors.js";
 
 export async function createEventType(
   data: CreateEventTypeInput,

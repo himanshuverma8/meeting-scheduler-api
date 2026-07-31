@@ -1,7 +1,7 @@
 import type {Request, Response, NextFunction } from "express";
-import { createEventTypePostRequestBodySchema, updateEventTypePostRequestBodySchema } from "./event-types.validation";
-import { createEventType, deleteEventType, getEventTypes, getEventTypesById, updateEventType } from "./event-types.service";
-import { AppError } from "../../lib/errors";
+import { createEventTypePostRequestBodySchema, updateEventTypePostRequestBodySchema } from "./event-types.validation.js";
+import { createEventType, deleteEventType, getEventTypes, getEventTypesById, updateEventType } from "./event-types.service.js";
+import { AppError } from "../../lib/errors.js";
 
 
 export async function createEventTypeHandler(req: Request, res: Response, next: NextFunction) {

@@ -1,10 +1,10 @@
 import { eq } from "drizzle-orm";
-import { db } from "../../db";
-import { bookings, event_types, schedule_entries, schedules } from "../../db/schema";
-import { AppError } from "../../lib/errors";
-import { computeSlots, resolveWindowsForDate } from "./availability.engine";
+import { db } from "../../db/index.js";
+import { bookings, event_types, schedule_entries, schedules } from "../../db/schema.js";
+import { AppError } from "../../lib/errors.js";
+import { computeSlots, resolveWindowsForDate } from "./availability.engine.js";
 import { DateTime } from "luxon";
-import type { Interval, EventConfig } from "./availability.engine";
+import type { Interval, EventConfig } from "./availability.engine.js";
 
 
 export async function getAvailableSlots(eventTypeId: string, startDate: number, endDate: number, inviteeTimeZone: string) {
