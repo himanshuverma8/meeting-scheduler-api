@@ -55,5 +55,7 @@ export const bookings = pgTable("bookings", {
     invitee_name: text("invitee_name").notNull(),
     invitee_email: text("invitee_email").notNull(),
     invitee_timezone: text("invitee_timezone").notNull(),
+    join_url: text("join_url"),
+    host_url: text("host_url"),
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow().notNull()
-})
+});
