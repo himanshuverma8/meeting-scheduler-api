@@ -86,7 +86,7 @@ Layered, feature-module structure — `route → controller → service → db`.
 
 `bookings` carries a denormalized `host_id` (so the exclusion constraint can enforce per-host overlap in a single table) and a unique `idempotency_key` for retry safety. Schedule entries store **local** clock times + an IANA zone; bookings store **UTC** instants and snapshot their own duration so later event-type edits never rewrite a past booking.
 
-![Database schema](./schema_v3.png)
+![Database schema](./schema_v4.png)
 
 ---
 
